@@ -7,17 +7,18 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* General Styles */
         body {
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             font-family: 'Raleway', sans-serif;
             margin: 0;
             padding: 0;
-            transition: background 0.5s, color 0.5s;
+            line-height: 1.6;
         }
 
         .container {
-            padding: 50px;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -27,58 +28,170 @@
             animation: fadeIn 2s ease-in-out;
         }
 
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(-20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* Tip Cards */
         .tip {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
         .tip:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
         }
 
+        .tip .details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .tip.active .details {
+            display: block;
+        }
+
+        .tip button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .tip button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
         footer {
             padding: 20px;
             background: rgba(0, 0, 0, 0.2);
             text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .tip {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Cybersecurity Tips</h1>
-        <div class="tip">
+        <div class="tip" onclick="toggleDetails(this)">
             <h2>Use Strong Passwords</h2>
             <p>Create complex passwords with a mix of letters, numbers, and symbols. Avoid using easily guessable information.</p>
+            <div class="details">
+                <p><strong>Tip:</strong> Use a password manager to generate and store strong passwords securely.</p>
+            </div>
+            <button aria-label="Read more about strong passwords">Read More</button>
         </div>
-        <div class="tip">
+        <div class="tip" onclick="toggleDetails(this)">
             <h2>Enable Two-Factor Authentication</h2>
             <p>Whenever possible, use two-factor authentication (2FA) for an extra layer of security on your accounts.</p>
+            <div class="details">
+                <p><strong>Tip:</strong> Use an authenticator app like Google Authenticator instead of SMS-based 2FA for better security.</p>
+            </div>
+            <button aria-label="Read more about two-factor authentication">Read More</button>
         </div>
-        <div class="tip">
+        <div class="tip" onclick="toggleDetails(this)">
             <h2>Update Software Regularly</h2>
             <p>Keep your operating system, apps, and antivirus programs up to date to protect against vulnerabilities.</p>
+            <div class="details">
+                <p><strong>Tip:</strong> Enable automatic updates to ensure you never miss critical security patches.</p>
+            </div>
+            <button aria-label="Read more about software updates">Read More</button>
         </div>
-        <div class="tip">
+        <div class="tip" onclick="toggleDetails(this)">
             <h2>Beware of Phishing Attacks</h2>
             <p>Be cautious of unsolicited emails or messages asking for personal information. Always verify the source before clicking on links.</p>
+            <div class="details">
+                <p><strong>Tip:</strong> Hover over links to see the actual URL before clicking, and never download attachments from unknown sources.</p>
+            </div>
+            <button aria-label="Read more about phishing attacks">Read More</button>
         </div>
-        <div class="tip">
+        <div class="tip" onclick="toggleDetails(this)">
             <h2>Use a VPN</h2>
             <p>A VPN encrypts your internet connection, making it harder for hackers to intercept your data while using public Wi-Fi.</p>
+            <div class="details">
+                <p><strong>Tip:</strong> Choose a reputable VPN provider that does not log your activity.</p>
+            </div>
+            <button aria-label="Read more about VPNs">Read More</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2023 Ayush Rai. All rights reserved.</p>
+        <p>&copy; 2023 <a href="#" target="_blank" aria-label="Visit Ayush Rai's portfolio">Ayush Rai</a>. All rights reserved.</p>
     </footer>
+
+    <script>
+        // JavaScript to toggle details visibility
+        function toggleDetails(tip) {
+            tip.classList.toggle('active');
+            const button = tip.querySelector('button');
+            if (tip.classList.contains('active')) {
+                button.textContent = 'Show Less';
+            } else {
+                button.textContent = 'Read More';
+            }
+        }
+    </script>
 </body>
 </html>
