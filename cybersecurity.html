@@ -5,32 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybersecurity Tips</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        .container {
+            padding: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .tip {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tip:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="menu">
-            <a href="index.html">Home</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-
     <div class="container">
-        <h2>Cybersecurity Tips</h2>
-        <p>Here are some cybersecurity best practices to keep your information safe:</p>
-        <ul>
-            <li>Use strong, unique passwords for each account.</li>
-            <li>Enable two-factor authentication (2FA) wherever possible.</li>
-            <li>Avoid clicking on suspicious links in emails.</li>
-            <li>Keep your software and antivirus updated.</li>
-        </ul>
+        <h1>Cybersecurity Tips</h1>
+        <div class="tip">
+            <h2>Use Strong Passwords</h2>
+            <p>Create complex passwords with a mix of letters, numbers, and symbols. Avoid using easily guessable information.</p>
+        </div>
+        <div class="tip">
+            <h2>Enable Two-Factor Authentication</h2>
+            <p>Whenever possible, use two-factor authentication (2FA) for an extra layer of security on your accounts.</p>
+        </div>
+        <div class="tip">
+            <h2>Update Software Regularly</h2>
+            <p>Keep your operating system, apps, and antivirus programs up to date to protect against vulnerabilities.</p>
+        </div>
+        <div class="tip">
+            <h2>Beware of Phishing Attacks</h2>
+            <p>Be cautious of unsolicited emails or messages asking for personal information. Always verify the source before clicking on links.</p>
+        </div>
+        <div class="tip">
+            <h2>Use a VPN</h2>
+            <p>A VPN encrypts your internet connection, making it harder for hackers to intercept your data while using public Wi-Fi.</p>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; <span id="year"></span> Ayush Rai. All rights reserved.</p>
+        <p>&copy; 2023 Ayush Rai. All rights reserved.</p>
     </footer>
-
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>
