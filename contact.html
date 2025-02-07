@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* General Styles */
         body {
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
@@ -27,11 +28,59 @@
             animation: fadeIn 2s ease-in-out;
         }
 
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(-20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* Go Back Button */
+        .go-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            z-index: 1000;
+        }
+
+        .go-back:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Contact Info Cards */
         .contact-info {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -45,14 +94,46 @@
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
         }
 
+        /* Footer */
         footer {
             padding: 20px;
             background: rgba(0, 0, 0, 0.2);
             text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .go-back {
+                top: 10px;
+                left: 10px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Go Back Button -->
+    <button class="go-back" onclick="goBack()" aria-label="Go back">Go Back</button>
+
     <div class="container">
         <h1>Contact</h1>
         <div class="contact-info">
@@ -68,5 +149,12 @@
     <footer>
         <p>&copy; 2023 Ayush Rai. All rights reserved.</p>
     </footer>
+
+    <script>
+        // JavaScript for Go Back functionality
+        function goBack() {
+            window.history.back(); // Navigates to the previous page in browser history
+        }
+    </script>
 </body>
 </html>
