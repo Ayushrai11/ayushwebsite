@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayush Rai</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* General Styles */
@@ -15,15 +14,57 @@
             font-family: 'Raleway', sans-serif;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
             transition: background 0.5s, color 0.5s;
         }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(to right, #1a1a1a, #333);
+            color: #f0f0f0;
+        }
+
         .container {
-            padding: 50px;
+            padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        h1, h2, h3 {
+
+        h1, h2 {
             margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Header */
@@ -31,7 +72,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 1rem;
             background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
             position: sticky;
@@ -39,94 +80,277 @@
             z-index: 1000;
         }
 
-        .logo:hover {
-            transform: scale(1.1);
+        .menu-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 1rem;
         }
 
-        .menu {
+        .dropdown-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: absolute;
+            top: 60px;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-menu.active {
             display: flex;
-            gap: 20px;
         }
 
-        .menu a {
+        .dropdown-menu a {
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* On/Off Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2575fc;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Problem Section */
+        .problem-section {
+            margin-top: 2rem;
+        }
+
+        .problem-section input[type="file"] {
+            display: none;
+        }
+
+        .problem-section label {
+            background: #ffcc00;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .problem-section label:hover {
+            background: #e6b800;
+            transform: scale(1.05);
+        }
+
+        .problem-section .upload-button {
+            background: #2575fc;
             color: white;
-            font-size: 1.2em;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s, transform 0.3s;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin-left: 0.5rem;
         }
 
-        .menu a:hover {
-            color: #ffcc00;
-            transform: scale(1.1);
+        .problem-section .upload-button:hover {
+            background: #1a5bbf;
+            transform: scale(1.05);
         }
 
-        /* Welcome Section */
-        .welcome {
+        .problem-section .file-name {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-bar #problemProgress {
+            height: 10px;
+            background-color: #ffcc00;
+            width: 0;
+            transition: width 0.3s;
+        }
+
+        /* Logo at the Bottom */
+        .logo-container {
             text-align: center;
-            margin-top: 100px;
+            margin-top: 4rem;
         }
 
-        .welcome h2 {
-            font-size: 4em;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .logo {
+            height: 60px;
         }
 
         /* Footer */
         footer {
-            margin-top: 100px;
-            padding: 20px;
+            padding: 1rem;
             background: rgba(0, 0, 0, 0.2);
             text-align: center;
         }
+
         footer p {
             margin: 0;
+            font-size: 0.9rem;
         }
 
-        /* Dark Mode */
-        body.dark-mode {
-            background: #121212;
-            color: #ffffff;
-        }
-        body.dark-mode header {
-            background: rgba(255, 255, 255, 0.1);
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+
+            .problem-section label,
+            .problem-section .upload-button {
+                width: 100%;
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+
+            .problem-section .file-name {
+                margin-left: 0;
+                text-align: center;
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://drive.google.com/uc?export=view&id=1m9QTtQfzTdTsU_A_WJbARZL51-RgUjs4" alt="Logo" class="logo">
-        <nav class="menu">
-            <a href="index.html#about">About</a>
-            <a href="cybersecurity.html">Cybersecurity Tips</a> <!-- Updated link -->
-            <a href="contact.html">Contact</a> <!-- Updated link -->
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="toggle" onchange="toggleDarkMode()">
+            <span class="slider"></span>
+        </label>
+        <nav class="dropdown-menu">
+            <a href="#about">About</a>
+            <a href="#cybersecurity-tips">Cybersecurity Tips</a>
+            <a href="#contact">Contact</a>
+            <a href="#notifications">Notifications</a>
         </nav>
     </header>
 
     <div class="container">
-        <section id="welcome" class="welcome">
-            <h2>Welcome to Cyber Website</h2>
-        </section>
         <section id="about">
             <h2>About</h2>
-            <p>Computer Science student with a foundational understanding of cybersecurity and a strong passion for problem-solving. Skilled in time management and leadership, with a commitment to continuous learning and personal growth. Eager to develop technical expertise, gain hands-on experience, and contribute effectively to a dynamic environment.</p>
+            <p>Computer Science student with a foundational understanding of cybersecurity and a strong passion for problem-solving.</p>
+        </section>
+
+        <section class="problem-section">
+            <h2>Submit Your Problem</h2>
+            <label for="problemFile">Choose File</label>
+            <input type="file" id="problemFile">
+            <span class="file-name" id="fileName">No file chosen</span>
+            <button class="upload-button" onclick="uploadFile()">Upload</button>
+            <div class="progress-bar">
+                <div id="problemProgress"></div>
+            </div>
         </section>
     </div>
 
+    <!-- Logo at the Bottom -->
+    <div class="logo-container">
+        <img src="https://drive.google.com/uc?export=view&id=1m9QTtQfzTdTsU_A_WJbARZL51-RgUjs4" alt="Logo" class="logo">
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2023 Ayush Rai. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> Ayush Rai. All rights reserved.</p>
     </footer>
 
     <script>
-        // Dark/Light Mode Toggle
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
+        // Toggle Menu for Mobile
+        function toggleMenu() {
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.classList.toggle('active');
         }
+
+        // File Upload - Show File Name
+        document.getElementById("problemFile").addEventListener("change", function() {
+            const fileName = this.files[0] ? this.files[0].name : "No file chosen";
+            document.getElementById("fileName").textContent = fileName;
+        });
+
+        // File Upload Simulation
+        function uploadFile() {
+            const fileInput = document.getElementById("problemFile");
+            const progressBar = document.getElementById("problemProgress");
+
+            if (!fileInput.files[0]) {
+                alert("Please choose a file first!");
+                return;
+            }
+
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    alert('File uploaded successfully!');
+                } else {
+                    width += 10;
+                    progressBar.style.width = width + '%';
+                }
+            }, 200);
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+
+        // Dynamic Year Update
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
